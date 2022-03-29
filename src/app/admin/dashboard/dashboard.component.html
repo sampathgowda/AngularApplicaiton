@@ -1,0 +1,241 @@
+<nav class="mt-5">
+    <ol class="breadcrumb mt-5">
+        <li class="breadcrumb-item "><a routerLink="/">Home</a></li>
+        <li class="breadcrumb-item active">Dashboard</li>
+   </ol>
+   
+</nav>
+<h5 >Dashboard</h5>
+<h6>{{CurrentDate|date :"longDate"}}</h6>
+<div class="row">
+    <div class="col-lg-3 bg-light">
+      <div class="row">
+        <div class="col-11 text-white text-center bg-dark font-weight-bold mx-2 rounded pt-2 pv-2">{{Designation| uppercase}} </div>
+        <div class="col-12 mt-2 text-center">
+            <img src="C:\Users\SampathuGowda\Documents\AngularUIPic\userLogin.PNG" width="120px">
+        </div>
+        <div class="col-12 text-center pt-2 pb-2 font-weight-bold">{{UserName|lowercase}}</div>
+        <div class="col-12 text-center pt-2 pb-2 " style="font-family:Arial">Team Summary</div>
+        <div class="col-12 mb-3">
+            <ul class="list-group">
+                <li class="list-group-item d-flex align-items-center justify-content-between">Number of team members <span class="badge badge-secondary badge-pill">{{NoOfTeamMembers}}</span></li>
+                <li class="list-group-item d-flex align-items-center justify-content-between">Total Cost Of AllProject <span class="badge badge-secondary badge-pill">$ {{TotalCostOfAllProject}} K</span></li>
+                <li class="list-group-item d-flex align-items-center justify-content-between">Pending Task <span  class="badge badge-secondary badge-pill">{{PendingTask}}</span></li>
+                <li class="list-group-item d-flex align-items-center justify-content-between">UpcomingProjects <span  class="badge badge-secondary badge-pill">{{UpcomingProjects | percent}}</span></li>
+
+            </ul>
+
+        </div>
+        <div class="col-12 pt-2 pb-2 text-center text-black bg-light " style="font-family: Arial">Clients</div>
+        <div class="col-12">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item" *ngFor="let client of Clients">{{client | slice: 0:9}}</li>
+                <!-- below 2 lines are commented since *ngFor is used  -->
+                <!-- <li class="list-group-item">AT&T COrporation</li>
+                <li class="list-group-item">Santender COrporation</li> -->
+
+
+            </ul>
+
+
+        </div>
+
+
+      </div>  
+
+     <p class="mt-3"> {{TeamMembersSummary|json}}</p>
+
+    </div>
+  
+    
+    <div class="col-lg-6">
+           
+        <div class="row">
+           <div class="col-12 pt-0 pb-2 bg-dark">
+               <div class="row">
+             <div class="col-6 text-left">   
+                <div class="dropdown">
+                   <button class="btn btn-secondary dropdown-toggle mt-2" type="button" data-toggle="dropdown" id="dropdownMenuButton"  onclick = "return` false" >Select Project</button>
+                   <!-- (click)="onProjectChnage($event)" -->
+                    <div class="dropdown-menu">
+                   <a class="dropdown-item" href="#">Project A</a>
+                   <a class="dropdown-item" href="#">Project B</a>
+                   <a class="dropdown-item" href="#">Project C</a>
+                   <a class="dropdown-item" href="#">Project D</a>
+                    </div>
+                  </div>
+                 </div> 
+                  <div class="col-6 text-right">   
+                 <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle mt-2" type="button" data-toggle="dropdown">2019</button>
+                     <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">2017</a>
+                    <a class="dropdown-item" href="#">2018</a>
+                    <a class="dropdown-item" href="#">2016</a>
+                    <a class="dropdown-item" href="#">2015</a>
+                     </div>
+                   </div>
+                </div>               
+            </div>
+            </div>
+            <div class="col-11 text-black text-center font-weight-bold pt-2 bg-info">PROJECT BRIEFING</div>
+
+            <div class="col-12">
+            <table class="table table-borderless">
+                <tr>
+                    <th scope="row"> Project Cost</th>
+                    <td> {{ProjectCost | currency:"USD"}}</td>
+                    
+
+                </tr>
+                <tr>
+                <th scope="row"> Current Expenditure</th>
+                <td>  {{CurrentExpenditure | currency:"INR"}} </td>
+                </tr>
+                <tr>
+                <th scope="row">Avilable Funds</th>
+                <td>  {{AvailableFunds | currency : "EUR"}}</td>
+            </tr>
+            </table>
+            </div>
+            <div class="col-11 text-black text-center font-weight-bold pt-2 bg-info text-uppercase">Team members summary</div>
+
+            <div class="table table-borderless">
+                <thead >
+                    <tr>
+                        <th class="text-uppercase">Region</th>
+                        <th class="text-uppercase">Team members count</th>
+                        <th class="text-uppercase">temporarily sunavialable member</th>
+
+                    </tr>
+
+                </thead>
+                <tbody>
+                    <tr *ngFor="let teamMembersSummary of TeamMembersSummary">
+                    <th >{{teamMembersSummary.Region}}</th>
+                    <td>{{teamMembersSummary.Count}}</td>
+                    <td>{{teamMembersSummary.unavialableMember}}</td>
+                    </tr>
+                    <tr>
+                      
+                </tbody>
+
+
+            </div>
+
+            </div>
+        
+    </div>
+    <div class="col-lg-3 bg-secondary">
+
+        <div class="col-11 text-black text-center font-weight-bold pt-2 bg-info text-uppercase">Team members</div>
+        <div class="col-lg-12 pt-2">
+            <div class="accordion" id="accordin1">
+                <div class="card">
+                    <div class="card-header bg-primary" id="card1">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link text-white" type="button" data-toggle="collapse" data-target="#cardbody1">East</button>
+                        </h2>
+                    </div>
+                    <div class="collapse show" data-parent="#accordin1" id="cardbody1">
+                        <div class="card-body" id="cardbody1" >
+                            <table class="table"> 
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>NAME</th>
+                                        <th>STATUS</th>
+
+                                    </tr>
+                                    
+
+                                </thead>
+                                <tbody>
+
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Ford</td>
+                                        <td><i class="fa fa-phone"></i>Available</td>
+
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="card" *ngFor="let teamMembers of TeamMembers; let i = index">
+                    <div class="card-header bg-primary" id="card2">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link text-white" type="button" data-toggle="collapse" [attr.data-target]="'#cardbody' + i" >{{teamMembers.Region}}</button>
+                        </h2>
+                    </div>
+                    <div class="collapse show" data-parent="#accordin1" [id]="'cardbody2' + i" [ngClass]="(i==0)?'show': '' "   >
+                        <div class="card-body">
+                            <div *ngIf="i==0; then firsttemplate;else SecondTemplate">
+                            </div>
+                            <ng-template #firsttemplate>
+
+                                <div class="card" *ngFor="let teammem of teamMembers.Members ">
+                                    <div class="card-header bg-primary text-white"> {{teammem.ID}} {{teammem.Name}} </div>
+                                    <div class="card-body">{{teammem.Status}} </div>
+
+
+                                </div>
+
+
+
+                            </ng-template>
+
+                            <ng-template #SecondTemplate>
+
+                                
+
+                            <table class="table">
+                                <thead>
+                                    <tr >
+                                        <th>ID</th>
+                                        <th>NAME</th>
+                                        <th>STATUS</th>
+
+                                    </tr>
+                                    
+                                </thead>
+                                <tbody>
+
+                                    <tr *ngFor="let teammem of teamMembers.Members">
+                                        <td>{{teammem.ID}}</td>
+                                        <td  [style.color]="(teammem.Status=='Busy')?'Red':'orange'">{{teammem.Name}}</td>
+                                        <td>{{teammem.Status}}</td>
+                                        <!-- Below line to display phone number symbol -->
+                                        <!-- <td><i class="fa fa-phone"></i>Available</td> -->
+                                        
+
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+
+                            </ng-template>
+
+
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+</div>
+  </div>
